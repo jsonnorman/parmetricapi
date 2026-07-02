@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from parmetricapi.views import Courses, TeeBoxes, Holes, login_user, register_user
+from parmetricapi.views import Courses, TeeBoxes, Holes, Favorites, login_user, register_user
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"courses", Courses, "course")
 router.register(r"tee_boxes", TeeBoxes, "tee_box")
 router.register(r"holes", Holes, "hole")
+router.register(r"favorites", Favorites, "favorite")
 
 
 urlpatterns = [

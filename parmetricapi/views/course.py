@@ -14,6 +14,12 @@ class CourseSerializer(serializers.ModelSerializer):
 class Courses(ViewSet):
     def list(self, request):
         courses = Course.objects.all()
+
+        created_by_me = request.query_params.get("created_by_me", None)
+
+        if created_by_me is not None:
+            courses = courses.filter(user=request.auth.user)
+
         serializer = CourseSerializer(courses, many=True)
 
         return Response(serializer.data)
